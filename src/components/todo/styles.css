@@ -1,0 +1,303 @@
+.main__container {
+  position: relative;
+  width: 60%;
+}
+
+.container__content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input___main {
+  height: 100px;
+  width: 90%;
+  text-align: center;
+  padding: 10px 50px;
+  border-radius: 10px 10px 0 0;
+}
+.list___main {
+  width: 90%;
+  text-align: center;
+  height: 60vh;
+  padding: 20px 50px;
+  overflow-y: auto;
+  border-radius: 0 0 10px 10px;
+  scrollbar-width: 0px;
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+.main__container::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  border-radius: 5px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.1) 2%
+  );
+}
+.todo__add__main {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+h2 {
+  color: #fff;
+  letter-spacing: 2px;
+  cursor: default;
+  user-select: none;
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+h2:before{
+  content: '';
+  background: #fff;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+h2:hover::before{
+  width: 100%;
+}
+
+
+.input__box {
+  /* position: relative; */
+  width: 100%;
+  margin-bottom: 10px;
+  justify-content: center;
+  /* display: flex; */
+}
+
+.todo__input__box {
+  user-select: none;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  text-align: left;
+  min-height: 41px;
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 70px 8px 8px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.todo__input__box.error {
+  border: 1.5px solid rgba(255, 0, 0, 0.641);
+  outline: none;
+}
+.todo__button__box {
+  display: flex;
+  height: 0px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.layout_adjustments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+input::placeholder {
+  color: #ffffff72;
+}
+.svg__icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  border-radius: 50px;
+  padding: 4px;
+  transition: 0.5s;
+  position: relative;
+  top: -21px;
+  right: 2px;
+}
+.svg__icon:hover {
+  transition: 0.5s;
+  border: 0.5px solid #fff;
+  border-radius: 50%;
+}
+
+/* -------------------------- FLOATING BOXES ANIMATIONS -------------------------- */
+.square {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  animation: square 10s linear infinite;
+  animation-delay: calc(-1s * var(--i));
+}
+
+@keyframes square {
+  0%,
+  100% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.square:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: -15px;
+  right: -45px;
+}
+
+.square:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  top: 105px;
+  left: -125px;
+  z-index: 2;
+}
+
+.square:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 85px;
+  right: -45px;
+  z-index: 2;
+}
+
+.square:nth-child(4) {
+  width: 50px;
+  height: 50px;
+  bottom: 35px;
+  left: -95px;
+}
+
+.square:nth-child(5) {
+  width: 50px;
+  height: 50px;
+  top: -15px;
+  left: -25px;
+}
+
+.square:nth-child(6) {
+  width: 85px;
+  height: 85px;
+  top: 165px;
+  right: -155px;
+  z-index: 2;
+}
+
+/* --------------------------- MEDIA QUERIES ------------------- */
+@media screen and (max-width: 768px) {
+  .main__container {
+    width: 90%;
+  }
+  .container__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .input___main {
+    width: 80%;
+    padding: 10px 20px;
+  }
+  .list___main {
+    width: 80%;
+    padding: 10px 20px;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  .square:nth-child(6) {
+    width: 70px;
+    height: 70px;
+    top: 165px;
+    right: -65px;
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .main__container {
+    width: 90%;
+  }
+  .input___main {
+    width: 90%;
+    padding: 10px 20px;
+  }
+  .list___main {
+    width: 90%;
+    padding: 10px 20px;
+  }
+
+  .svg__icon {
+    width: 17px;
+    height: 17px;
+  }
+  .square:nth-child(6) {
+    width: 70px;
+    height: 70px;
+    top: 300px;
+    right: 25px;
+    z-index: 0;
+  }
+  .square:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    bottom: -23px;
+    left: 20px;
+    z-index: 0;
+  }
+  .square:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: -40px;
+    right: 25px;
+  }
+  .main__container::before {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .input___main {
+    width: 90%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+  .list___main {
+    width: 90%;
+    padding: 10px 20px;
+  }
+  .squares {
+    display: none;
+  }
+  .main__container {
+    width: 80%;
+  }
+}
