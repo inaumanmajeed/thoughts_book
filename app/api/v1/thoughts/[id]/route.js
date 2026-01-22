@@ -17,6 +17,7 @@ function getUserIdFromToken(token) {
 
 export async function PATCH(request, { params }) {
   try {
+    const { id } = await params;
     await connectDB();
     const authHeader = request.headers.get('authorization');
     const userId = getUserIdFromToken(authHeader);
@@ -28,7 +29,6 @@ export async function PATCH(request, { params }) {
       );
     }
 
-    const { id } = params;
     const body = await request.json();
     const { text } = body;
 
@@ -63,6 +63,7 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
+    const { id } = await params;
     await connectDB();
     const authHeader = request.headers.get('authorization');
     const userId = getUserIdFromToken(authHeader);
@@ -73,8 +74,6 @@ export async function DELETE(request, { params }) {
         { status: 401 }
       );
     }
-
-    const { id } = params;
 
     const thought = await Thought.findOneAndDelete({ _id: id, user: userId });
 
