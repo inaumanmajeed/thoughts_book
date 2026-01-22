@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "../../store/todo/TodoSlice";
+import { deleteThought, updateThought } from "../../store/todo/TodoSlice";
 import "./styles.css";
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
   const [editableTodoId, setEditableTodoId] = useState(null);
 
@@ -12,9 +12,26 @@ const TodoList = () => {
     setEditableTodoId(todoId);
   };
 
-  const handleSaveClick = (todoId, newText) => {
-    dispatch(updateTodo({ id: todoId, text: newText }));
-    setEditableTodoId(null);
+  const handleSaveClick = async (todoId, newText) => {
+    if (!newText.trim()) {
+      return;
+    }
+    try {
+      await dispatch(updateThought({ id: todoId, text: newText })).unwrap();
+      setEditableTodoId(null);
+    } catch (err) {
+      console.error("Failed to update thought:", err);
+    }
+  };
+
+  const handleDelete = async (todoId) => {
+    if (window.confirm("Are you sure you want to delete this thought?")) {
+      try {
+        await dispatch(deleteThought(todoId)).unwrap();
+      } catch (err) {
+        console.error("Failed to delete thought:", err);
+      }
+    }
   };
 
   return (
@@ -51,7 +68,7 @@ const TodoList = () => {
               className="svg__icon"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              onClick={() => dispatch(deleteTodo(todo.id))}
+              onClick={() => handleDelete(todo.id)}
             >
               <path d="M20 7V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V7H2V5H22V7H20ZM6 7V20H18V7H6ZM7 2H17V4H7V2ZM11 10H13V17H11V10Z"></path>
             </svg>

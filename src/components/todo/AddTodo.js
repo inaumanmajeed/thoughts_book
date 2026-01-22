@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../../store/todo/TodoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createThought } from "../../store/todo/TodoSlice";
 import "./styles.css";
 
 const AddTodo = () => {
   const [input, setInput] = React.useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.todo);
 
-  const addTodoHandler = (e) => {
+  const addTodoHandler = async (e) => {
     e.preventDefault();
     if (!input.trim()) {
-      setError("Please enter a valid todo.");
+      setError("Please enter a valid thought.");
       return;
     }
-    dispatch(addTodo(input));
-    setInput("");
-    setError("");
+    try {
+      await dispatch(createThought(input)).unwrap();
+      setInput("");
+      setError("");
+    } catch (err) {
+      setError(err || "Failed to create thought");
+    }
   };
   const handleChange = (e) => {
     setInput(e.target.value);

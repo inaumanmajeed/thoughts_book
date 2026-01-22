@@ -1,10 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../store/auth/AuthSlice";
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 import "./styles.css";
 
-
 const TodoCard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="main__container">
@@ -17,6 +28,23 @@ const TodoCard = () => {
         <div className="square" style={{ "--i": 5 }}></div>
         </div>
         <div className="container__content">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+            <h2 style={{ margin: 0 }}>Welcome, {user?.username || "User"}!</h2>
+            <button 
+              onClick={handleLogout}
+              style={{
+                padding: "0.5rem 1rem",
+                background: "rgba(255, 255, 255, 0.2)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                borderRadius: "5px",
+                color: "white",
+                cursor: "pointer",
+                fontSize: "0.9rem"
+              }}
+            >
+              Logout
+            </button>
+          </div>
           <AddTodo />
           <h2>Memories</h2>
           <TodoList />
