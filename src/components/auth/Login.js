@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { loginUser, clearError } from '../../store/auth/AuthSlice';
 import './Auth.css';
 
@@ -10,14 +10,14 @@ const Login = () => {
     password: '',
   });
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const router = useRouter();
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/');
+      router.push('/');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, router]);
 
   const handleChange = (e) => {
     setFormData({
@@ -65,7 +65,7 @@ const Login = () => {
           </button>
         </form>
         <p>
-          Don't have an account? <a href="/register">Register</a>
+          Don't have an account? <a href="/register" style={{ color: 'white' }}>Register</a>
         </p>
       </div>
     </div>

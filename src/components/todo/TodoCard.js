@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { logout } from "../../store/auth/AuthSlice";
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
@@ -8,12 +8,12 @@ import "./styles.css";
 
 const TodoCard = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const router = useRouter();
   const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login");
+    router.push("/login");
   };
 
   return (
