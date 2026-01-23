@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { registerUser, clearError } from '../../store/auth/AuthSlice';
 import './Auth.css';
+import '../todo/styles.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -51,6 +52,8 @@ const Register = () => {
               required
               minLength={3}
               maxLength={30}
+              className="todo__input__box "
+              placeholder="Enter your username"
             />
           </div>
           <div className="form-group">
@@ -61,17 +64,21 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              className="todo__input__box "
+              placeholder="Enter your email"
             />
           </div>
           <div className="form-group">
             <label>Password</label>
             <input
               type="password"
-              name="password"
+              name="password" 
               value={formData.password}
               onChange={handleChange}
               required
               minLength={6}
+              className="todo__input__box "
+              placeholder="Enter your password"
             />
           </div>
           <button type="submit" disabled={loading}>
@@ -79,7 +86,7 @@ const Register = () => {
           </button>
         </form>
         <p>
-          Already have an account? <a href="/login" style={{ color: 'white' }}>Login</a>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </div>
     </div>

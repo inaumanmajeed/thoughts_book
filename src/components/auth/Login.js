@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { loginUser, clearError } from '../../store/auth/AuthSlice';
 import './Auth.css';
+import '../todo/styles.css'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -48,6 +49,8 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              className="todo__input__box "
+              placeholder="Enter your email"
             />
           </div>
           <div className="form-group">
@@ -58,6 +61,8 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              className="todo__input__box "
+              placeholder="Enter your password"
             />
           </div>
           <button type="submit" disabled={loading}>
@@ -65,7 +70,7 @@ const Login = () => {
           </button>
         </form>
         <p>
-          Don't have an account? <a href="/register" style={{ color: 'white' }}>Register</a>
+          Don't have an account? <a href="/register">Register</a>
         </p>
       </div>
     </div>

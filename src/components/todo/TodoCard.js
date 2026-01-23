@@ -29,7 +29,7 @@ const TodoCard = () => {
         </div>
         <div className="container__content">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-            <h2 style={{ margin: 0 }}>Welcome, {user?.username || "User"}!</h2>
+            <h2 style={{ margin: 0 }}>Welcome, {user?.username ? user?.username.charAt(0).toUpperCase() + user?.username.slice(1) : "User"}!</h2>
             <button 
               onClick={handleLogout}
               style={{
@@ -39,7 +39,10 @@ const TodoCard = () => {
                 borderRadius: "5px",
                 color: "white",
                 cursor: "pointer",
-                fontSize: "0.9rem"
+                fontSize: "0.9rem",
+                position: "absolute",
+                right: "10px",
+                top: "10px"
               }}
             >
               Logout
